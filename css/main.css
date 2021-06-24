@@ -129,15 +129,19 @@ sp-textarea {
 }
 
 .textures img {
+    border: solid 1px transparent;
     cursor: pointer;
-    width: 100px;
-    padding: 10px;
+    width: 80px;
+    height: 80px;
+    padding: 0px;
+    margin: 8px;
+    object-fit: cover;
 }
 
 .textures img:hover {
-    border: solid 1px #fd0;
+    border: solid 1px rgb(0, 132, 255);
 }
 
 .textures img:active {
-    border: solid 5px #fd0;
+    border: solid 1px #fd0;
 }

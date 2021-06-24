@@ -1,6 +1,7 @@
 const app = require("photoshop").app;
 const fs = require('uxp').storage.localFileSystem;
 let entry = null;
+let textureentry = null;
 let persistentFolder = null;
 
 function findNestedObj(entireObj, keyToFind) {
