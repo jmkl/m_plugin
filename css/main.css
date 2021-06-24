@@ -1,0 +1,143 @@
+body {
+    color: white;
+    padding: 5px 20px;
+}
+
+li:before {
+    content: '• ';
+    width: 3em;
+}
+
+#layers {
+    border: 0px solid #808080;
+    border-radius: 0px;
+    padding: 0px;
+}
+
+sp-textarea {
+    width: 100%;
+    height: 150px;
+}
+
+#docID {
+    flex-wrap: wrap-reverse;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.container sp-heading {
+    flex-grow: 4;
+}
+
+#btnSave,
+#btnDoFit,
+#btnDoStuff,
+#btnExplode {
+    padding-left: auto 14px;
+    margin: 0px;
+    font-size: xx-small;
+    font-weight: 500;
+}
+
+#btnSave {
+    border-radius: 14px 0px 0px 14px;
+}
+
+#btnDoFit {
+    border-radius: 0px 14px 14px 0px;
+}
+
+#btnDoStuff {
+    background-color: rgb(42, 41, 107);
+    font-size: 10px;
+}
+
+#btnDoStuff:hover {
+    background-color: rgb(46, 44, 179);
+}
+
+#btnDoStuff:active {
+    background-color: rgb(160, 58, 106);
+}
+
+#aligngroup {}
+
+#btn_align {
+    border: 0px;
+    font-size: xx-small;
+    padding: 0px 10px;
+}
+
+.resetdir:hover {
+    color: rgb(255, 255, 0);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#actualdir {
+    color: #fd2;
+}
+
+.sp-tabs {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid #3E3E3E;
+}
+
+.sp-tab {
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.sp-tab.selected {
+    background-color: #3E3E3E;
+    padding: 0 12px;
+    border-radius: 4px 4px 0px 0px;
+    border-right: 3px solid #303030;
+}
+
+.sp-tab.selected sp-label {
+    color: #fd0;
+    font-weight: bolder;
+}
+
+.sp-tab-page {
+    display: none;
+    flex: 1 1 auto;
+    overflow: scroll;
+    padding: 12px 0;
+    flex-direction: column;
+}
+
+.sp-tab-page.visible {
+    display: flex;
+}
+
+.sp-tab-page>* {
+    flex: 0 0 auto;
+}
+
+.textures {
+    display: space-between;
+    direction: row;
+    justify-content: center;
+    height: 300px;
+}
+
+.textures img {
+    cursor: pointer;
+    width: 100px;
+    padding: 10px;
+}
+
+.textures img:hover {
+    border: solid 1px #fd0;
+}
+
+.textures img:active {
+    border: solid 5px #fd0;
+}
