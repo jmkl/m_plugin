@@ -63,12 +63,25 @@ sp-textarea {
     background-color: rgb(160, 58, 106);
 }
 
-#aligngroup {}
+#aligngroup {
+    display: flex;
+}
 
 #btn_align {
-    border: 0px;
+    border: solid 1px #808080;
+    margin: auto 2px;
     font-size: xx-small;
-    padding: 0px 10px;
+    padding: 2px 10px;
+    cursor: pointer;
+    background-color: #3E3E3E;
+}
+
+#btn_align:hover {
+    background-color: rgb(100, 100, 100);
+}
+
+#btn_align:active {
+    background-color: rgb(56, 126, 184);
 }
 
 .resetdir:hover {

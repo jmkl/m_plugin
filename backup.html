@@ -11,20 +11,20 @@
 
 <body>
     <div class="sp-tabs">
-        <div class="sp-tab " id="tab-main">
+        <div class="sp-tab selected" id="tab-main">
             <sp-label>Main</sp-label>
         </div>
-        <div class="sp-tab selected" id="tab-second">
-            <sp-label>Dua</sp-label>
+        <div class="sp-tab " id="tab-second">
+            <sp-label>Textures</sp-label>
         </div>
     </div>
-    <div class="sp-tab-page " id="tab-main">
+    <div class="sp-tab-page visible" id="tab-main">
         <sp-body>
             <div id="aligngroup">
-                <sp-action-button id="btn_align" value="openfile">Open File</sp-action-button>
-                <sp-action-button id="btn_align" value="selectsubject">Select Subj</sp-action-button>
-                <sp-action-button id="btn_align" value="paste">Paste Image</sp-action-button>
-                <sp-action-button id="btn_align" value="posterize">Posterize</sp-action-button>
+                <div id="btn_align" value="openfile">Open File</div>
+                <div id="btn_align" value="selectsubject">Select Subj</div>
+                <div id="btn_align" value="paste">Paste Image</div>
+                <div id="btn_align" value="posterize">Posterize</div>
 
             </div>
             <span class="resetdir" onclick="resetEntry()">Current File/Folder : </span><span id="currentpath">null</span><span> </span> <span id="actualdir">null</span>
@@ -51,7 +51,7 @@
 
         </sp-body>
     </div>
-    <div class="sp-tab-page visible" id="tab-second">
+    <div class="sp-tab-page " id="tab-second">
         <div class="textures" id="textures">
 
         </div>

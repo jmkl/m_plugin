@@ -272,6 +272,7 @@ async function resetEntry() {
 async function getTextureToken() {
 
   const te = localStorage.getItem("texture-token");
+
   try {
     textureenty = await fs.getEntryForPersistentToken(te);
   } catch (error) {
@@ -284,46 +285,51 @@ async function getTextureToken() {
   }
 
   (async () => {
-    const templates = await textureenty.getEntries();
-
-    for (const d of templates) {
-      if (d.isFolder) {
-        const thumb = await d.getEntries();
-        const texture = document.querySelector(".textures");
-        for (const t of thumb) {
-          const element = document.createElement("img");
-          element.classList = "img";
-          element.value = t.name;
-          element.src = "texturelab/thumb/" + t.name;
-          texture.appendChild(element);
-        }
-
-        const imgs = texture.childNodes;
-        for (const t of imgs) {
-          t.addEventListener("click", async(evt) => {
-            const namafile = evt.target.value;     
-            const texture = await textureenty.getEntry(namafile);       
-            let token = fs.createSessionToken(texture)
-            await require("photoshop").action.batchPlay([{
-              _obj: "placeEvent",
-              target: {
-                _path: token,
-                _kind: "local",
-              },
-            },
-            {
-              _obj: "placedLayerConvertToLayers",
-              _isCommand: true,
-            },_alignhor(ALIGNME.VER), _alignhor(ALIGNME.HOR)],
-            {
-                        "synchronousExecution": true,
-                        "modalBehavior": "fail"
-                    });
-                    runcmdFitLayer(true);
-          });
-        }
-      }
+    //const templates = await textureenty.getEntries();
+    try{
+    const templates = await textureenty.getEntry("thumb/data.json");
+    const readme = await templates.read();
+    const jsonobj = JSON.parse(readme);
+    for (const j of jsonobj){
+      const texture = document.querySelector(".textures");
+      const element = document.createElement("img");
+      element.classList = "img";
+      element.setAttribute("value",j.name);      
+      element.src =`data:image/${j.ext};base64,${j.base64}`
+      texture.appendChild(element);
     }
+    }catch(error){console.log(error)}
+    const texture = document.querySelector(".textures");
+    
+    const imgs = texture.childNodes;
+   
+    for (const t of imgs) {
+     
+      t.addEventListener("click", async(evt) => {
+  
+        const namafile = evt.target.getAttribute("value");     
+        
+        const texture = await textureenty.getEntry(namafile);       
+        let token = fs.createSessionToken(texture)
+        await require("photoshop").action.batchPlay([{
+          _obj: "placeEvent",
+          target: {
+            _path: token,
+            _kind: "local",
+          },
+        },
+        {
+          _obj: "placedLayerConvertToLayers",
+          _isCommand: true,
+        },_alignhor(ALIGNME.VER), _alignhor(ALIGNME.HOR)],
+        {
+                    "synchronousExecution": true,
+                    "modalBehavior": "fail"
+                });
+                runcmdFitLayer(true);
+      });
+    }
+
   })();
 }
 
