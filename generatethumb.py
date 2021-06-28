@@ -1,21 +1,30 @@
 from PIL import Image
 import os,PIL
 import base64,os,json
-
+def crop_image(image):
+    width, height = image.size
+    if width == height:
+        return image
+    offset  = int(abs(height-width)/2)
+    if width>height:
+        image = image.crop([offset,0,width-offset,height])
+    else:
+        image = image.crop([0,offset,width,height-offset])
+    return image
 def createThumb():
-    fixed_height =50
+    fixed_height =120
     root = "J:\\texturelabs"
     thumbdir = "J:\\texturelabs\\thumb"
     thumbs = os.listdir(thumbdir)
 
     files =  os.listdir(root)
+
     for name in files:    
         if(os.path.isfile(os.path.join(root,name)) and len(files)-1 > len(thumbs) and os.path.isfile(os.path.join(thumbdir,name))==False):
             
-            image = Image.open(os.path.join(root,name))        
-            height_percent = (fixed_height/float(image.size[1]))
-            width_size = int((float(image.size[0]) * float(height_percent)))
-            image = image.resize((width_size, fixed_height), PIL.Image.NEAREST)
+            image = Image.open(os.path.join(root,name))
+            image = crop_image(image)
+            image = image.resize((fixed_height, fixed_height), PIL.Image.NEAREST)
             image.save(os.path.join(root,"thumb",name))
 
 def generatebase64():

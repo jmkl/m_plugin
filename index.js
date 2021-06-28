@@ -9,6 +9,7 @@ function findNestedObj(entireObj, keyToFind) {
     JSON.stringify(entireObj, (_, nestedValue) => {
         if (nestedValue && nestedValue[keyToFind]) {
             foundObj = nestedValue;
+
         }
         return nestedValue;
     });

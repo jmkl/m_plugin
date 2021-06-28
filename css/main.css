@@ -144,8 +144,8 @@ sp-textarea {
 .textures img {
     border: solid 1px transparent;
     cursor: pointer;
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     padding: 0px;
     margin: 8px;
     object-fit: cover;
