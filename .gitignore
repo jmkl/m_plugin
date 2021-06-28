@@ -1,5 +1,4 @@
 .git
 *.lock
 node_modules/
-*.ccx
 !debug.log
