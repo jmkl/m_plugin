@@ -2,40 +2,89 @@
 <html>
 
 <head>
-    <script src="utils.js"></script>
-    <script src="main.js"></script>
+    <script src="index.js"></script>
+    <script src="pexels.js"></script>
+    <script src="konvapanel.js"></script>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 
 <body>
-    <div class="container">
-        <sp-heading>Type here.x.. </sp-heading><span id="docID">12</span>
+    <div class="sp-tabs">
+        <div class="sp-tab selected" id="tab-main">
+            <sp-label>Main</sp-label>
+        </div>
+        <div class="sp-tab " id="tab-second">
+            <sp-label>Textures</sp-label>
+        </div>
+        <div class="sp-tab" id="tab-third">
+            <sp-label>Pexels</sp-label>
+        </div>
+    </div>
+    <div class="sp-tab-page visible" id="tab-main">
+        <sp-body>
+            <div id="aligngroup">
+                <div id="btn_align" value="openfile">Open File</div>
+                <div id="btn_align" value="selectsubject">Select Subj</div>
+                <div id="btn_align" value="paste">Paste Image</div>
+                <div id="btn_align" value="posterize">Posterize</div>
+
+            </div>
+            <span class="resetdir" onclick="resetEntry()">Current File/Folder : </span><span id="currentpath">null</span><span> </span> <span id="actualdir">null</span>
+
+            <div class="container">
+                <sp-heading>Type here... </sp-heading><span id="docID">12</span>
+            </div>
+
+            <sp-body id="layers">
+                <sp-textarea quiet id="texts" style="display: block;" value=""></sp-textarea>
+            </sp-body>
+            <div class="container">
+                <sp-dropdown placeholder="Template" class="template" style="width: 80%;">
+                    <sp-menu class="template-items" slot="options">
+                    </sp-menu>
+                </sp-dropdown>
+                <sp-action-button id="btnTemplate" onclick="getPersistentToken()" style="width: 20%;">Get</sp-action-button>
+            </div>
+            <footer id="buttons">
+                <sp-action-button id="btnPopulate" style="display:none;">Make Text</sp-action-button>
+                <sp-action-button id="btnSave">Save</sp-action-button>
+                <sp-action-button id="btnExplode">Explode</sp-action-button>
+                <sp-action-button id="btnDoStuff">Create Title</sp-action-button>
+                <sp-action-button id="btnDoFit">Fit Image</sp-action-button>
+            </footer>
+
+        </sp-body>
+    </div>
+    <div class="sp-tab-page " id="tab-second">
+        <div class="textures" id="textures">
+
+        </div>
     </div>
 
-
-    <sp-body id="layers">
-        <sp-textarea quiet id="texts" style="display: block;" value=""></sp-textarea>
-    </sp-body>
-    <sp-dropdown placeholder="Template" style="width: 320px">
-        <sp-menu slot="options">
-            <sp-menu-item> Deselect </sp-menu-item>
-            <sp-menu-item> Select inverse </sp-menu-item>
-            <sp-menu-item> Feather... </sp-menu-item>
-            <sp-menu-item> Select and mask... </sp-menu-item>
-            <sp-menu-divider></sp-menu-divider>
-            <sp-menu-item> Save selection </sp-menu-item>
-            <sp-menu-item disabled> Make work path </sp-menu-item>
-        </sp-menu>
-    </sp-dropdown>
-    <footer>
-        <sp-action-button id="btnPlace">Place</sp-action-button>
-        <sp-action-button id="btnEdit">Edit</sp-action-button>
-        <sp-action-button id="btnSave">Save</sp-action-button>
-        <sp-action-button disabled id="btnExplode">Explode</sp-action-button>
-    </footer>
-
-
+    <div class="sp-tab-page " id="tab-third">
+        <div id="loading">
+            <img id="loading-image" src="icons/loading.gif" alt="Loading..." />
+        </div>
+        <div class="searchcontainer">
+            <div class="searchpanel">
+                <sp-textfield id="carigambar" type="search" placeholder="Search Image..."></sp-textfield>
+            </div>
+            <div class="images">
+            </div>
+        </div>
+    </div>
+    <dialog id="alertDialog">
+        <form method="dialog">
+            <sp-heading class="title">Vectorize Images?</sp-heading>
+            <sp-divider size="large"></sp-divider>
+            <sp-body class="content"></sp-body>
+            <footer>
+                <sp-button class="no" variant="secondary" quiet>No</sp-button>
+                <sp-button class="yes" variant="cta">Yes</sp-button>
+            </footer>
+        </form>
+    </dialog>
 </body>
 
 </html>

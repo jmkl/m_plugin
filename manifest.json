@@ -2,7 +2,7 @@
     "id": "40db2c95",
     "name": "UtilityMix",
     "version": "1.0.0",
-    "main": "backup.html",
+    "main": "index.html",
     "host": [{
         "app": "PS",
         "minVersion": "22.0.0"

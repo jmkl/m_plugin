@@ -3,6 +3,7 @@ const fs = require('uxp').storage.localFileSystem;
 let entry = null;
 let textureenty = null;
 let persistentFolder = null;
+let pexelPersistentFolder = null;
 
 function findNestedObj(entireObj, keyToFind) {
     let foundObj;
@@ -82,7 +83,7 @@ async function runcmdFitLayer(forcewidth = false) {
     const dh = doc.height;
     const dw = doc.width;
     const activeLayer = doc.activeLayers;
-    if (activeLayer[0].kind == 1) {
+    if (activeLayer[0].kind == 1 || activeLayer[0].kind == 5) {
         const { left, top, bottom, right } = activeLayer[0].bounds;
         const imgw = right - left;
         const imgh = bottom - top
@@ -511,13 +512,9 @@ async function getMaxName(ntries) {
     const files = ntries.filter(e => e.name.indexOf('psd') > 0);
     const names = []
     files.forEach(child => {
-        try {
-            names.push(parseInt(child.name.replace('.psd', '')));
-        } catch (error) {
-
-        }
-
-        //console.log(child.name)
+        const name = parseInt(child.name.replace('.psd', ''));
+        if (!isNaN(name))
+            names.push(name);
     })
     return Math.max(...names);
 }
@@ -822,7 +819,8 @@ document.getElementById("btnDoStuff").addEventListener("click", doStuff);
 const dropdown = document.querySelector(".template-items");
 let template = "template.psd";
 async function addElementToDropdown(templates) {
-  while (dropdown.firstChild) dropdown.removeChild(dropdown.firstChild);
+  while (dropdown.firstChild)
+  dropdown.removeChild(dropdown.firstChild);
   await templates.forEach((tmplt) => {
     const element = document.createElement("sp-menu-item");
     element.classList = "dropdown-item";
@@ -1005,10 +1003,8 @@ async function getTextureToken() {
    
     for (const t of imgs) {
      
-      t.addEventListener("click", async(evt) => {
-  
-        const namafile = evt.target.getAttribute("value");     
-        
+      t.addEventListener("click", async(evt) => {  
+        const namafile = evt.target.getAttribute("value");        
         const texture = await textureenty.getEntry(namafile);       
         let token = fs.createSessionToken(texture)
         await require("photoshop").action.batchPlay([{
@@ -1018,10 +1014,10 @@ async function getTextureToken() {
             _kind: "local",
           },
         },
-        {
+        /* {
           _obj: "placedLayerConvertToLayers",
           _isCommand: true,
-        },_alignhor(ALIGNME.VER), _alignhor(ALIGNME.HOR)],
+        }, */_alignhor(ALIGNME.VER), _alignhor(ALIGNME.HOR)],
         {
                     "synchronousExecution": true,
                     "modalBehavior": "fail"
